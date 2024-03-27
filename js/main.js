@@ -33,20 +33,20 @@ window.addEventListener('DOMContentLoaded', function () {
   $('#header .ham').click(function () {
     $('#menu').fadeToggle().toggleClass('on');
 
-    $('.iw')
-      .load(function () {
-        $w = $(this).width();
-        $h = $(this).height();
-        $(this).remove();
-        console.log($w);
-        $('.side').css('width', `calc(100% + ${$w}px)`);
-      })
-      .appendTo('body');
+    // Side image move half left and right
   });
 
   $('#menu .menu_header .ham').click(function () {
     $('#menu').fadeToggle().toggleClass('on');
   });
 
-  // Side image move half left and right
+  $('.iw')
+    .load(function () {
+      $w = $(this).width();
+      $h = $(this).height();
+      $(this).remove();
+      console.log($w);
+      $('.side').css('width', `calc(100% + ${$w}px)`);
+    })
+    .appendTo('body');
 });
