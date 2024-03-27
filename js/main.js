@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', function () {
       left: e.pageX - cursor.width() * 0.5,
       top: e.pageY - cursor.height() * 0.5,
       ease: 'power4.cut',
-      _duration: 0.9,
+      duration: 0.9,
     });
   });
   // 2. 헤더 애니메이션 효과
@@ -22,11 +22,31 @@ window.addEventListener('DOMContentLoaded', function () {
       gsap.to('.dot', 0.5, { scale: 0.15, background: '#4274ff' });
     });
 
-  $('#header')
+  $('#header, #menu .menu_header')
     .mouseenter(function () {
       $(this).addClass('on');
     })
     .mouseleave(function () {
       $(this).removeClass('on');
     });
+
+  $('#header .ham').click(function () {
+    $('#menu').fadeToggle().toggleClass('on');
+
+    $('.iw')
+      .load(function () {
+        $w = $(this).width();
+        $h = $(this).height();
+        $(this).remove();
+        console.log($w);
+        $('.side').css('width', `calc(100% + ${$w}px)`);
+      })
+      .appendTo('body');
+  });
+
+  $('#menu .menu_header .ham').click(function () {
+    $('#menu').fadeToggle().toggleClass('on');
+  });
+
+  // Side image move half left and right
 });
