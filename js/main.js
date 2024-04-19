@@ -182,7 +182,7 @@ window.addEventListener('DOMContentLoaded', function () {
     start: 'top top',
     end: 'bottom bottom',
     scrub: 1,
-    markers: true,
+    // markers: true,
   });
 
   sec04.to('#section04 .title_w', { x: -5500 }, 0);
@@ -221,5 +221,113 @@ window.addEventListener('DOMContentLoaded', function () {
       // idx / 2
       // idx * 0.5
     );
+  });
+
+  // section 05 page 5개의 길이를 계산
+  let sectionCount = this.document.querySelectorAll('.fix-this-5 .page');
+  // console.log(sectionCount);
+  let sec05_total = 0;
+
+  sectionCount.forEach((section) => {
+    sec05_total += section.clientWidth;
+  });
+  // console.log(sec05_total);
+  // console.log(innerWidth);
+  gsap.to('.fix-this-5', {
+    x: -(sec05_total - innerWidth),
+    scrollTrigger: {
+      trigger: '.trigger-this-5',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: true,
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  // page 1 text animation
+  gsap.to('#section05', {
+    scrollTrigger: {
+      trigger: '#section05',
+      start: '-300 top',
+      scrub: true,
+      // markers: true,
+      toggleClass: 'on',
+    },
+  });
+
+  // page 2 text animation
+  gsap.to('#section05 .page02', {
+    scrollTrigger: {
+      trigger: '#section05',
+      start: '300 top',
+      scrub: true,
+      markers: true,
+      onEnter: () => {
+        $('#section05 .page02').addClass('on');
+      },
+      onEnterBack: () => {
+        $('#section05 .page02').addClass('on');
+      }, // 화면 스크롤을 되돌릴때 스크럽 연결 - 없으면 on 클래스가 제거되지 않음
+      onLeave: () => {
+        $('#section05 .page02').removeClass('on');
+      },
+      onLeaveBack: () => {
+        $('#section05 .page02').removeClass('on');
+      }, // 화면 스크롤을 되돌릴때 스크럽 연결 - 없으면 on 클래스가 제거되지 않음
+      // toggleClass: 'on', // 가로 스크롤 지점을 인식할 수 없음 - #section05 요소의 top과 bottom을 인식
+    },
+  });
+  // page 3 text scroll up animation
+
+  gsap.to('#section05 .page03 .txt', {
+    y: -innerHeight * 2,
+    scrollTrigger: {
+      trigger: '#section05',
+      start: () => '+=' + innerHeight * 1.5, //화면 높이 길이의 하나 반 만큼 가로스크롤이 이동했을 때 start 마커가 하단에 나타남
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  // page 4 text animation
+  gsap.to('#section05 .page04', {
+    scrollTrigger: {
+      trigger: '#section05',
+      start: '3000 top',
+      scrub: true,
+      // markers: true,
+      onEnter: () => {
+        $('#section05 .page04').addClass('on');
+      },
+      onEnterBack: () => {
+        $('#section05 .page04').addClass('on');
+      }, // 화면 스크롤을 되돌릴때 스크럽 연결 - 없으면 on 클래스가 제거되지 않음
+      onLeave: () => {
+        $('#section05 .page04').removeClass('on');
+      },
+      onLeaveBack: () => {
+        $('#section05 .page04').removeClass('on');
+      }, // 화면 스크롤을 되돌릴때 스크럽 연결 - 없으면 on 클래스가 제거되지 않음
+      // toggleClass: 'on', // 가로 스크롤 지점을 인식할 수 없음 - #section05 요소의 top과 bottom을 인식
+    },
+  });
+
+  // page 5 text animation
+  gsap.to('#section05', {
+    scrollTrigger: {
+      trigger: '#section05',
+      start: '4500 top',
+      scrub: true,
+      markers: true,
+      onEnter: () => {
+        video05.play();
+      },
+
+      onLeaveBack: () => {
+        video05.currentTime = 0; //비디오 재생 시간을 0으로 되돌림
+        video05.pause();
+      },
+    },
   });
 });
