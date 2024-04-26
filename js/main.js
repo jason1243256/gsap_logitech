@@ -262,7 +262,7 @@ window.addEventListener('DOMContentLoaded', function () {
       trigger: '#section05',
       start: '300 top',
       scrub: true,
-      markers: true,
+      // markers: true,
       onEnter: () => {
         $('#section05 .page02').addClass('on');
       },
@@ -314,6 +314,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   // page 5 text animation
+  const video05 = document.querySelector('#sc05_video');
   gsap.to('#section05', {
     scrollTrigger: {
       trigger: '#section05',
@@ -337,7 +338,6 @@ window.addEventListener('DOMContentLoaded', function () {
       trigger: '#section06',
       start: 'top top',
       end: 'bottom bottom',
-      pin: true,
       scrub: true,
       toggleClass: 'on',
       // markers: true,
@@ -362,10 +362,224 @@ window.addEventListener('DOMContentLoaded', function () {
     start: 'top top',
     end: 'bottom bottom',
     scrub: true,
-    markers: true,
+    // markers: true,
   });
 
   sec06.to('#section06 .side .left', { x: -1000 }, 0);
   sec06.to('#section06 .side .right', { x: 1000 }, 0);
   sec06.to('#section06 .underbar', { y: 1000 }, 0);
+
+  // section 06 chapter image move animation
+  gsap.to('#section06 .visual_container .chapter', {
+    x: 480,
+    scrollTrigger: {
+      trigger: '#section06',
+      start: '1200 top',
+      end: '5000 bottom',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section 06 chapter square height 0 animation
+  gsap.to('#section06 .visual_container .square > div', {
+    height: 0,
+    scrollTrigger: {
+      trigger: '#section06',
+      start: '5000 top',
+      end: '7000 bottom',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section 06 chapter title move animation
+  gsap.to('#section06 .visual_container .title', {
+    x: 180,
+    scrollTrigger: {
+      trigger: '#section06',
+      start: '1200 top',
+      end: '5000 bottom',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section 06 chapter headset animation
+  gsap.to('#section06 .visual_container .headset', {
+    x: 1800,
+    scrollTrigger: {
+      trigger: '#section06',
+      start: '1200 top',
+      end: 'bottom bottom',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section 06 title text scale up animation
+  gsap.to('#title_svg', {
+    scale: 60,
+    y: 2400,
+    x: -200,
+    scrollTrigger: {
+      trigger: '#section06',
+      start: '5000 top',
+      end: 'bottom bottom',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section07 video controll animation
+  const video07 = document.querySelector('#sc07_video');
+  gsap.to('#section07', {
+    scrollTrigger: {
+      trigger: '#section07',
+      start: 'top top',
+      scrub: true,
+      toggleClass: 'on',
+      markers: true,
+      onEnter: () => {
+        video07.play();
+        $('#section07, .side').addClass('on');
+      },
+      onLeaveBack: () => {
+        video07.currentTime = 0;
+        $('#section07 .side').removeClass('on');
+      },
+    },
+  });
+
+  // section07 fix on scroll
+  gsap.to('.fix-this-7', {
+    scrollTrigger: {
+      trigger: '.trigger-this-7',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: true,
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  // section07 video scale down animation
+  gsap.to('#section07 .video', {
+    scale: 0.8,
+    y: 15,
+    scrollTrigger: {
+      trigger: '#section07',
+      start: '1000 top',
+      end: 'bottom bottom',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section07 side image remove class on
+  gsap.to('#section07 .side', {
+    scrollTrigger: {
+      trigger: '#section07',
+      start: '1800 top',
+      end: 'bottom bottom',
+      scrub: true,
+      markers: true,
+      onEnter: () => {
+        //스크롤이 트리거 요소의 시작 위치에 도달했을 때
+        $('#section07 .side').addClass('on');
+      },
+      onEnterBack: () => {
+        //스크te롤이 트리거 요소의 시작 위치에 역방향으로 도달했을 때
+        $('#section07 .side').addClass('on');
+      },
+      onLeave: () => {
+        //스크롤이 트리거 요소의 끝 위치를 지났을 때
+        $('#section07 .side').removeClass('on');
+      },
+      onLeaveBack: () => {
+        //스크롤이 트리거 요소의 끝 위치를 역방향으로 지낫을 때
+        $('#section07 .side').removeClass('on');
+      }, // 화면 스크롤을 되돌릴때 스크럽 연결 - 없으면 on 클래스가 제거되지 않음
+    },
+  });
+
+  // section 08, 09 title text slide up animation
+  function section0809Title(section, position) {
+    gsap.to(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: `${position} top`,
+        scrub: true,
+        markers: true,
+        toggleClass: 'on',
+      },
+    });
+  }
+
+  section0809Title('#section08', '-300');
+  section0809Title('#section09', '-500');
+
+  //section 091 header remove class
+  gsap.to('.fix-this-91', {
+    scrollTrigger: {
+      trigger: '.trigger-this-91',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: true,
+      pin: true,
+      markers: true,
+      onEnter: () => {
+        $('#header').removeClass('on');
+      },
+      onLeaveBack: () => {
+        $('#header').addClass('on');
+      },
+    },
+  });
+
+  //section 091 title text slide up animation
+  gsap.to('#section091', {
+    scrollTrigger: {
+      trigger: '#section091',
+      start: '-300 top',
+      scrub: true,
+      toggleClass: 'on',
+      markers: true,
+    },
+  });
+
+  //section 091 mouth image animation
+  gsap.to('#section091 .mouse', {
+    x: 0,
+    y: -2000,
+    rotation: 90,
+    scrollTrigger: {
+      trigger: '#section091',
+      start: '500 top',
+      scrub: true,
+      markers: true,
+    },
+  });
+
+  // section 10 horizontal scroll animation
+  const section10pages = document.querySelectorAll('#section10 .page');
+  // console.log(section10pages);
+  let sec10_total = 0;
+
+  section10pages.forEach((section) => {
+    sec10_total += section.clientWidth; //각각의 page 가로크기 합산
+  });
+  // console.log(sec10_total);
+
+  gsap.to('.fix-this-10', {
+    x: -(sec10_total - innerWidth),
+    scrollTrigger: {
+      trigger: '.trigger-this-10',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: true,
+      scrub: true,
+      // markers: true,
+    },
+  });
 });
