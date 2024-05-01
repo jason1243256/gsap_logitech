@@ -377,7 +377,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '1200 top',
       end: '5000 bottom',
       scrub: true,
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -389,7 +389,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '5000 top',
       end: '7000 bottom',
       scrub: true,
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -401,7 +401,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '1200 top',
       end: '5000 bottom',
       scrub: true,
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -413,7 +413,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '1200 top',
       end: 'bottom bottom',
       scrub: true,
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -427,7 +427,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '5000 top',
       end: 'bottom bottom',
       scrub: true,
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -439,7 +439,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: 'top top',
       scrub: true,
       toggleClass: 'on',
-      markers: true,
+      // markers: true,
       onEnter: () => {
         video07.play();
         $('#section07, .side').addClass('on');
@@ -472,7 +472,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '1000 top',
       end: 'bottom bottom',
       scrub: true,
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -510,7 +510,7 @@ window.addEventListener('DOMContentLoaded', function () {
         trigger: section,
         start: `${position} top`,
         scrub: true,
-        markers: true,
+        // markers: true,
         toggleClass: 'on',
       },
     });
@@ -527,7 +527,7 @@ window.addEventListener('DOMContentLoaded', function () {
       end: 'bottom bottom',
       scrub: true,
       pin: true,
-      markers: true,
+      // markers: true,
       onEnter: () => {
         $('#header').removeClass('on');
       },
@@ -544,7 +544,7 @@ window.addEventListener('DOMContentLoaded', function () {
       start: '-300 top',
       scrub: true,
       toggleClass: 'on',
-      markers: true,
+      // markers: true,
     },
   });
 
@@ -582,4 +582,78 @@ window.addEventListener('DOMContentLoaded', function () {
       // markers: true,
     },
   });
+
+  const vide10 = document.querySelector('#sc10_video');
+  const vide11 = document.querySelector('#sc11_video');
+
+  function playVideoSec10(top, vidElmt) {
+    gsap.to('#section10', {
+      scrollTrigger: {
+        trigger: '#section10',
+        start: `${top} top`,
+        scrub: true,
+        // markers: true,
+        onEnter: () => {
+          vidElmt.play();
+        },
+
+        onLeaveBack: () => {
+          vidElmt.currentTime = 0;
+          vidElmt.pause();
+        },
+      },
+    });
+  }
+
+  playVideoSec10('-500', vide10);
+  playVideoSec10('1200', vide11);
+
+  // javascript add or remove clss :
+  // abc.classList.add('on) or abc.classList.remove('on')
+  // select element :
+  // document.querySelector('.abc');
+
+  // jQuery add or remove class:
+  // abc.addClass('on') or abc.removeClass('on')
+
+  // select element:
+  // $('.abc')
+
+  function animateTextSec10(top, elmt) {
+    gsap.to(elmt, {
+      scrollTrigger: {
+        trigger: '#section10',
+        start: `${top} top`,
+        scrub: true,
+        markers: true,
+        onEnter: () => {
+          $(elmt).addClass('on');
+        },
+
+        onLeaveBack: () => {
+          $(elmt).removeClass('on');
+        },
+      },
+    });
+  }
+
+  animateTextSec10('400', '#section10 .page03');
+  animateTextSec10('2800', '#section10 .page05 .container01 .title');
+  animateTextSec10('3500', '#section10 .page05 .container02 .title');
+  animateTextSec10('4200', '#section10 .page05 .container03 .title');
+
+  function scrollMouse(evenOdd, height) {
+    gsap.to(`#section10 .page03 .mouse ${evenOdd}`, {
+      y: height * 2,
+      scrollTrigger: {
+        trigger: '#section10',
+        start: '200 top',
+        scrub: true,
+        markers: true,
+      },
+    });
+  }
+
+  scrollMouse('.odd', -innerHeight);
+  scrollMouse('.even', innerHeight);
 });

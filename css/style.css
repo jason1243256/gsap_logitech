@@ -17,6 +17,10 @@
 }
 
 /* Header Style */
+#header {
+  background: #000;
+}
+
 #header,
 #menu .menu_header {
   transition: all 0.5s;
